@@ -61,6 +61,13 @@ function createWindow () {
 app.allowRendererProcessReuse = false
 app.on('ready', createWindow)
 
+app.on('ready', () => {
+  protocol.registerFileProtocol('file', (request, callback) => {
+    const pathname = decodeURI(request.url.replace('file:///', ''))
+    callback(pathname)
+  })
+})
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
