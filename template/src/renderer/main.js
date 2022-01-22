@@ -11,6 +11,12 @@ import router from './router'
 import store from './store'
 {{/isEnabled}}
 
+{{#isEnabled pluginsFrontend 'bootstrap-vue'}}
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+{{/isEnabled}}
+
 {{#isEnabled plugins 'vue-electron'}}
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 {{/isEnabled}}
@@ -18,6 +24,11 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 {{/isEnabled}}
 Vue.config.productionTip = false
+
+{{#isEnabled pluginsFrontend 'bootstrap-vue'}}
+Vue.use(IconsPlugin)
+Vue.use(BootstrapVue)
+{{/isEnabled}}
 
 /* eslint-disable no-new */
 new Vue({
