@@ -168,7 +168,7 @@ module.exports = {
       if (list[check]) return opts.fn(this)
       else return opts.inverse(this)
     },
-    deps (plugins) {
+    deps (plugins, pluginsFrontend) {
       let output = ''
       let dependencies = {
         'axios': '^0.18.0',
@@ -177,6 +177,19 @@ module.exports = {
         'vuex': '^3.6.2',
         'vuex-electron': '^1.0.3',
         'tinytoolbox': '^0.0.9'
+      }
+
+      let frontendDependencies = {
+        bootstrap: {
+          "bootstrap": "^4.6.1",
+          "bootstrap-vue": "^2.21.2",
+          "popper.js": "^1.16.1",
+          "jquery": "^3.6.0"
+        }
+      }
+      console.log(plugins, pluginsFrontend)
+      if (pluginsFrontend != 'none') {
+
       }
 
       if (Object.keys(plugins).length > 0) output += ',\n'
