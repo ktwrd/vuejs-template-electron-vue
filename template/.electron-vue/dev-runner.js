@@ -117,6 +117,9 @@ function startMain () {
 function startElectron () {
   var args = [
     '--inspect=5858',
+    '--js-flags="--expose-gc"',
+    '--max-old-space-size=8192',
+    '--enable-precise-memory-info',
     path.join(__dirname, '../dist/electron/main.js')
   ]
 
