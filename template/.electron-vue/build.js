@@ -2,27 +2,27 @@
 
 process.env.NODE_ENV = 'production'
 
-const { say } = require('cfonts')
-const chalk = require('chalk')
-const del = require('del')
+var { say } = require('cfonts')
+var chalk = require('chalk')
+var del = require('del')
 {{#if_eq builder 'packager'}}
-const packager = require('electron-packager')
+var packager = require('electron-packager')
 {{else}}
-const { spawn } = require('child_process')
+var { spawn } = require('child_process')
 {{/if_eq}}
-const webpack = require('webpack')
-const Listr = require('listr')
+var webpack = require('webpack')
+var Listr = require('listr')
 
-{{#if_eq builder 'packager'}}const buildConfig = require('./build.config'){{/if_eq}}
-const mainConfig = require('./webpack.main.config')
-const rendererConfig = require('./webpack.renderer.config')
-const webConfig = require('./webpack.web.config')
+
+var mainConfig = require('./webpack.main.config')
+var rendererConfig = require('./webpack.renderer.config')
+var webConfig = require('./webpack.web.config')
 var Multispinner = require('multispinner')
 
-const doneLog = chalk.bgGreen.white(' DONE ') + ' '
-const errorLog = chalk.bgRed.white(' ERROR ') + ' '
-const okayLog = chalk.bgBlue.white(' OKAY ') + ' '
-const isCI = process.env.CI || false
+var doneLog = chalk.bgGreen.white(' DONE ') + ' '
+var errorLog = chalk.bgRed.white(' ERROR ') + ' '
+var okayLog = chalk.bgBlue.white(' OKAY ') + ' '
+var isCI = process.env.CI || false
 
 if (process.env.BUILD_TARGET === 'clean') clean()
 else if (process.env.BUILD_TARGET === 'web') web()
@@ -39,15 +39,14 @@ async function build () {
 
   del.sync(['dist/electron/*', '!.gitkeep'])
 
-  const tasks = ['main', 'renderer']
-  const m = new Multispinner(tasks, {
+  var m = new Multispinner(['main', 'renderer'], {
     preText: 'building',
     postText: 'process'
   })
 
   let results = ''
 
-  const tasks = new Listr(
+  var tasks = new Listr(
     [
       {
         title: 'building master process',
@@ -150,7 +149,7 @@ function web () {
 }
 
 function greeting () {
-  const cols = process.stdout.columns
+  var cols = process.stdout.columns
   let text = ''
 
   if (cols > 85) text = 'lets-build'
