@@ -189,7 +189,8 @@ module.exports = {
       }
       console.log(plugins, pluginsFrontend)
       if (pluginsFrontend != 'none') {
-
+        let dependencies_test = Object.fromEntries(Object.entries(frontendDependencies[pluginsFrontend]).concat(Object.entries(dependencies)))
+        console.log(dependencies_test)
       }
 
       if (Object.keys(plugins).length > 0) output += ',\n'
