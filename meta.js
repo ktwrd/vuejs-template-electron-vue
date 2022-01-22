@@ -187,10 +187,9 @@ module.exports = {
           "jquery": "^3.6.0"
         }
       }
-      console.log(plugins, pluginsFrontend)
-      if (pluginsFrontend != 'none') {
-        let dependencies_test = Object.fromEntries(Object.entries(frontendDependencies[pluginsFrontend]).concat(Object.entries(dependencies)))
-        console.log(dependencies_test)
+      
+      if (pluginsFrontend != 'none' && frontendDependencies[pluginsFrontend] != undefined) {
+        dependencies = Object.fromEntries(Object.entries(frontendDependencies[pluginsFrontend]).concat(Object.entries(dependencies)))
       }
 
       if (Object.keys(plugins).length > 0) output += ',\n'
