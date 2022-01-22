@@ -7,6 +7,22 @@ import { app, BrowserWindow } from 'electron'{{#if_eq eslintConfig 'airbnb'}} //
 import '../renderer/store'
 {{/isEnabled}}
 
+ipcMain.on('memoryUsage', (event) => {
+    function logBytes (x) {
+        return [x[0], x[1]]
+    }
+    
+    let oe = Object.entries(process.memoryUsage()).map(logBytes)
+    let total = 0
+    let mapped = oe.map(e => parseFloat(e[1]))
+    for (let i = 0; i < mapped.length; i++) {
+        total += mapped[i]
+    }
+    oe.push(['total', total])
+    let data = Object.fromEntries(oe)
+    event.returnValue = data
+})
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
