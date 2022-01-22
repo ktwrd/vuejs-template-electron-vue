@@ -104,6 +104,11 @@ module.exports = {
           short: 'Airbnb'
         },
         {
+          name: 'DARiOX (https://github.com/darioxdotclub/vue-config-dariox',
+          value: 'dariox',
+          short: 'DARiOX',
+        },
+        {
           name: 'none (configure it yourself)',
           value: 'none',
           short: 'none'
