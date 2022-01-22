@@ -82,6 +82,27 @@ module.exports = {
       choices: ['axios', 'vue-electron', 'vue-router', 'vuex', 'vuex-electron', 'tinytoolbox'],
       default: ['axios', 'vue-electron', 'vue-router', 'vuex', 'vuex-electron']
     },
+    pluginsFrontend: {
+      type: 'list',
+      message: 'Select which Vue frontend plugins to install',
+      choices: [
+        {
+          name: 'None (Do it your self or install different one later)',
+          value: 'none',
+          short: 'none'
+        },
+        {
+          name: 'Bootstrap (https://github.com/bootstrap-vue/bootstrap-vue/tree/v2.21.2)',
+          value: 'bootstrap',
+          short: 'Boostrap'
+        },
+        {
+          name: 'Material (https://github.com/vuematerial/vue-material/tree/v1.0.0-beta-15)',
+          value: 'material',
+          short: 'Material'
+        }
+      ]
+    },
     eslint: {
       type: 'confirm',
       require: true,
