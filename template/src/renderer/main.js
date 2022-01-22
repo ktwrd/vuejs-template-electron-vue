@@ -31,7 +31,7 @@ Vue.use(BootstrapVue)
 {{/isEnabled}}
 
 /* eslint-disable no-new */
-new Vue({
+const vueJS = new Vue({
   components: { App },
   {{#isEnabled plugins 'vue-router'}}
   router,
@@ -40,4 +40,5 @@ new Vue({
   store,
   {{/isEnabled}}
   template: '<App/>'
-}).$mount('#app')
+})
+vueJS.$mount('#app')
