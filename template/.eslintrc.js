@@ -56,7 +56,6 @@ module.exports = {
     'new-cap': 0,
     'no-restricted-imports': 2,
     'no-global-assign': 0,
-    'indent': ['error', 4],
     'no-shadow-restricted-names': 0
     {{/if_eq}}
     // allow debugger during development
