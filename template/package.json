@@ -6,8 +6,10 @@
   "version": "{{ appver }}",
   "author": "{{ author }}",
   "description": "{{ description }}",
-  "license": null,
   "main": "./dist/electron/main.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     {{#if_eq builder 'packager'}}
     "build": "node .electron-vue/build.js",
@@ -16,6 +18,8 @@
     "build:mas": "cross-env BUILD_TARGET=mas node .electron-vue/build.js",
     "build:win32": "cross-env BUILD_TARGET=win32 node .electron-vue/build.js",
     {{else}}
+    "rebuild": "electron-rebuild",
+    "install:appdeps": "electron-builder install-app-deps",
     "build": "node .electron-vue/build.js && electron-builder",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     {{/if_eq}}
@@ -77,12 +81,15 @@
   },
 {{/if_eq}}
   "dependencies": {
-    "vue": "^2.5.16"{{deps plugins}}
+    "electron-is-dev": "^2.0.0",
+    "vue": "^2.6.14"{{deps plugins}}
   },
   "devDependencies": {
     "ajv": "^6.5.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
@@ -95,15 +102,15 @@
     "css-loader": "^0.28.11",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^2.0.4",
+    "electron": "^11.5.0",
     "electron-debug": "^1.5.0",
-    "electron-devtools-installer": "^2.2.4",
+    "electron-devtools-installer": "git+https://github.com/MarshallOfSound/electron-devtools-installer.git",
     {{#if_eq builder 'packager'}}
     "electron-packager": "^12.1.0",
-    "electron-rebuild": "^1.8.1",
     {{else}}
     "electron-builder": "^20.19.2",
     {{/if_eq}}
+    "electron-rebuild": "^3.2.5",
     {{#eslint}}
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
@@ -112,6 +119,14 @@
     "eslint-plugin-html": "^4.0.3",
     {{#if_eq eslintConfig 'standard'}}
     "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    {{/if_eq}}
+    {{#if_eq eslintConfig 'dariox'}}
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
@@ -152,6 +167,7 @@
     "node-sass": "^4.9.2",
     "sass-loader": "^7.0.3",
     {{/if}}
+    "multispinner": "^0.2.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "vue-html-loader": "^1.2.4",

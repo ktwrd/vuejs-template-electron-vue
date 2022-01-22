@@ -79,7 +79,7 @@ module.exports = {
     plugins: {
       type: 'checkbox',
       message: 'Select which Vue plugins to install',
-      choices: ['axios', 'vue-electron', 'vue-router', 'vuex', 'vuex-electron'],
+      choices: ['axios', 'vue-electron', 'vue-router', 'vuex', 'vuex-electron', 'tinytoolbox'],
       default: ['axios', 'vue-electron', 'vue-router', 'vuex', 'vuex-electron']
     },
     eslint: {
@@ -152,9 +152,10 @@ module.exports = {
       let dependencies = {
         'axios': '^0.18.0',
         'vue-electron': '^1.0.6',
-        'vue-router': '^3.0.1',
-        'vuex': '^3.0.1',
-        'vuex-electron': '^1.0.0'
+        'vue-router': '^3.5.3',
+        'vuex': '^3.6.2',
+        'vuex-electron': '^1.0.3',
+        'tinytoolbox': '^0.0.9'
       }
 
       if (Object.keys(plugins).length > 0) output += ',\n'
