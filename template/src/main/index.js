@@ -58,7 +58,7 @@ function createWindow () {
     mainWindow = null
   })
 }
-
+app.allowRendererProcessReuse = false
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
